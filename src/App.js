@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Products from './components/Products';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      products: [],
+      filterProducts: []
+    };
+  };
+
+  componentDidMount() {
+    const api = 'http://localhost:8000/products';
+    fetch(api)
+    .then(response => response.json())
+    .then(data => this.setState(
+      {
+        products: data,
+        filterProducts: data
+      }))
+  };
+
+  render() {
+    return (
+      <div className='App'>
+        <div className='container'>
+          <h1>E comerce</h1>
+          <hr/>
+          <div className='row'>
+            <div className='col-md-9'>
+              Filter ide ovde
+              <hr/>
+              <Products products={this.state.products}/>
+            </div>
+            <div className='col-md-3'>
+              Korpa ide ovde
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+};
+
 
 export default App;
