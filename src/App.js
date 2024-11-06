@@ -23,6 +23,17 @@ class App extends Component {
       }))
   };
 
+  handleSortChange = e => {
+    this.setState({
+      sort: e.target.value
+    });
+    this.listProducts();
+  };
+
+  listProducts = () => {
+
+  };
+
   render() {
     return (
       <div className='App'>
@@ -31,7 +42,7 @@ class App extends Component {
           <hr/>
           <div className='row'>
             <div className='col-md-9'>
-              <Filter count={this.state.filterProducts.length}/>
+              <Filter count={this.state.filterProducts.length} handleSortC={this.handleSortChange}/>
               <hr/>
               <Products products={this.state.products}/>
             </div>

@@ -13,7 +13,7 @@ export default class Filter extends Component {
                             <label>
                                 Order by
                                 <select
-                                    className="form-control"
+                                    className="form-control" onChange={this.props.handleSortC}
                                 >
                                     <option value="">Select</option>
                                     <option value="lowestprice">Lowest to highest</option>
