@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Products from './components/Products';
+import Filter from './components/Filter';
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class App extends Component {
           <hr/>
           <div className='row'>
             <div className='col-md-9'>
-              Filter ide ovde
+              <Filter count={this.state.filterProducts.length}/>
               <hr/>
               <Products products={this.state.products}/>
             </div>
