@@ -11,6 +11,7 @@ class App extends Component {
       products: [], // Svi proizvodi
       filterProducts: [], // Filtrirani proizvodi
     };
+    this.handleSortChange = this.handleSortChange.bind(this)
   }
 
   componentDidMount() {
@@ -34,9 +35,24 @@ class App extends Component {
     });
     this.listProducts();
   };
-
+  // Metoda za sortiranje proizvoda
   listProducts = () => {
-    // Implementacija logike sortiranja/filtriranja proizvoda
+    this.setState((stateObj) => {
+      if (stateObj.sort !== "") {
+        stateObj.products.sort((a, b) =>
+          stateObj.sort === "lowestprice"
+            ? a.price > b.price
+              ? 1
+              : -1
+            : a.price < b.price
+            ? 1
+            : -1
+        );
+      } else {
+        stateObj.products.sort((a, b) => (a.id > b.id ? 1 : -1));
+      }
+      return { filterProducts: this.state.products };
+    });
   };
 
   render() {
