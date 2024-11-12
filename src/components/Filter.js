@@ -12,7 +12,7 @@ export default class Filter extends Component {
               <label>
                 {/* Padajuci meni za sortiranje proizvoda */}
                 Order by
-                <select 
+                <select
                   className="form-control"
                   value={this.props.sort}
                   onChange={this.props.handleSortC} // Event handler za promenu sortiranja
@@ -23,14 +23,13 @@ export default class Filter extends Component {
                 </select>
               </label>
             </div>
-            <div className="col-md-4" >
-              <label>
-                {" "}
+            <div className="col-md-4">
+              <label> {" "}
                 {/* Padajuci meni za filtriranje proizvoda po velicini */}
                 Filter Size
-                <select 
-                  className="form-control" 
-                  value={this.props.size} 
+                <select
+                  className="form-control"
+                  value={this.props.size}
                   onChange={this.props.handleSizeC}
                 >
                   <option value="">ALL</option>
