@@ -12,12 +12,12 @@ class Basket extends Component {
           "Basket is empty"
         ) : (
           <div> {" "}
-           {/* Prikaz ukupnog broja proizvoda u korpi */}
+            {/* Prikaz ukupnog broja proizvoda u korpi */}
             You have {cartItems.length} items in basket. <hr />{" "}
           </div>
         )}
 
-         {/* Mapiranje kroz proizvode u korpi */}
+        {/* Mapiranje kroz proizvode u korpi */}
         {cartItems.map((item) => (
           <div key={item.id} className="basket-item">
             {/* Prikaz naslova proizvoda i dugmeta za uklanjanje svih istih proizvoda */}

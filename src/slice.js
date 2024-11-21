@@ -14,24 +14,24 @@ export const getProductsAsync = createAsyncThunk(
 );
 
 const productSlice = createSlice({
+    name: 'products',
     initialState: {
         list: [], // Prazan niz za listu proizvoda
-        status: null, // Pocetno stanje statusa (nema statusa)
+        status: null, // Pocetno stanje statusa
     },
-
-    reducers: {}, // Mesto za sinhrone akcije (trenutno prazno)
-    extraReducers: {
-        // Obrada asinhronih akcija
-        [getProductsAsync.pending]: (state, action) => {
-            state.status = "loading"; // Promena statusa na "loading"
-        },
-        [getProductsAsync.fulfilled]: (state, { payload }) => {
-            state.list = payload; // Punjenje liste proizvoda
-            state.status = "success"; // Promena statusa na "success"
-        },
-        [getProductsAsync.rejected]: (state, action) => {
-            state.status = "failed";  // Promena statusa na "failed" ako API poziv nije uspesan
-        },
+    reducers: {}, // Mesto za sinhrone akcije
+    extraReducers: (builder) => {
+        builder
+            .addCase(getProductsAsync.pending, (state) => {
+                state.status = "loading"; // API poziv je pokrenut
+            })
+            .addCase(getProductsAsync.fulfilled, (state, { payload }) => {
+                state.list = payload; // Punimo listu proizvodima
+                state.status = "success"; // API poziv je uspesan
+            })
+            .addCase(getProductsAsync.rejected, (state) => {
+                state.status = "failed"; // API poziv nije uspesan
+            });
     },
 });
 
