@@ -15,14 +15,15 @@ const cartSlice = createSlice({
                 item => item.id === action.payload.id
             )
             if (itemIndex >= 0) {
-
-            } else {
                 state.cartItems[itemIndex].cartQuantity += 1
+            } else {
+                const tempProduct = {...action.payload, cartQuantity: 1}
+                state.cartItems.push(tempProduct)
             }
         }
     }, 
-    extraReducers: {}
-
+    
 });
+export const { addtoCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

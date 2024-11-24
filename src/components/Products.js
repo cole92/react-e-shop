@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import util from "../util";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../productSlice";
+import { addtoCart } from "../cartSlice";
 
 
 const Products = () => {
@@ -12,6 +13,11 @@ const Products = () => {
   useEffect(() => {
     dispatch(getProductsAsync()); // Dispecujemo asinhronu akciju za preuzimanje proizvoda
   }, [dispatch]) // Zavisnost osigurava da se efekat pokrece samo jednom (ili ako se dispatch promeni)
+
+  const handleAddToCart = x => {
+    dispatch(addtoCart(x))
+  };
+
   // Ako je status `loading`, prikazujemo poruku dok se podaci ucitavaju
   if (loading) return <p>loading...</p>
 

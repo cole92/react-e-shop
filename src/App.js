@@ -19,20 +19,6 @@ class App extends Component {
     this.handleSizeChange = this.handleSizeChange.bind(this);
   }
 
-  componentDidMount() {
-    // API endpoint za proizvode
-    const api = "http://localhost:8000/products";
-    // Fetch podataka i setovanje u stanje nakon preuzimanja
-    fetch(api)
-      .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          products: data,
-          filterProducts: data,
-        })
-      );
-  }
-
   // Event handler za promenu sortiranja
   handleSortChange = (e) => {
     this.setState({
