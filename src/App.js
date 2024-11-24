@@ -139,10 +139,7 @@ class App extends Component {
               />
               <hr />
               {/* Products komponenta za prikaz proizvoda */}
-              <Products
-                products={this.state.filterProducts}
-                handleAddToCart={this.handleAddToCart}
-              />
+              <Products />
             </div>
             <div className="col-md-3">
               {/* Placeholder za korpu */}

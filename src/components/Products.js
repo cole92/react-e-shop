@@ -1,33 +1,50 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import util from "../util";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../productSlice";
 
 
 const Products = () => {
-  return (
-    <div
-      key={product.id}
-      className="col-md-3 my-2 mx-4 p-2 border border-primary border-2 rounded"
-    >
-      <div className="thumbnail text-center">
-        <a href={`#${}`}>
-          {/* Prikaz slike proizvoda */}
-          <img src={`/products/${}_2.jpg`} alt={} />
-          {/* Prikaz naziva proizvoda */}
-          <div>{product.title}</div>
-        </a>
-        <div>
-          {/* Prikaz formatirane cene proizvoda */}
-          <strong>{util.formatCurrency()}</strong> <br />
-          <button
-            className="btn btn-primary"
+  const dispatch = useDispatch(); // Hook za pokretanje akcija iz Redux-a
+  const { list, loading } = useSelector(state => state.products); // Pristup globalnom stanju iz `store`
 
-            onClick={() => this.props.handleAddToCart()} // Prosledjena metoda
-          >
-            Add to cart
-          </button>
+  // Koristimo useEffect za API poziv prilikom inicijalnog renderovanja
+  useEffect(() => {
+    dispatch(getProductsAsync()); // Dispecujemo asinhronu akciju za preuzimanje proizvoda
+  }, [dispatch]) // Zavisnost osigurava da se efekat pokrece samo jednom (ili ako se dispatch promeni)
+  // Ako je status `loading`, prikazujemo poruku dok se podaci ucitavaju
+  if (loading) return <p>loading...</p>
+
+  return (
+    <div>
+      <div className="row">
+        {/** Mapiranje niza list **/}
+        {list.map(product => (
+          <div
+          key={product.id}
+          className="col-md-3 my-2 mx-4 p-2 border border-primary border-2 rounded"
+        >
+          <div className="thumbnail text-center">
+            <a href={`#${product.id}`}>
+              {/* Prikaz slike proizvoda */}
+              <img src={`/products/${product.sku}_2.jpg`} alt={product.title} />
+              {/* Prikaz naziva proizvoda */}
+              <div>{ product.title }</div>
+            </a>
+            <div>
+              {/* Prikaz formatirane cene proizvoda */}
+              <strong>{util.formatCurrency(product.price)}</strong> <br />
+              <button
+                className="btn btn-primary"
+    
+                onClick={()=> handleAddToCart(product)} // Prosledjena metoda
+              >
+                Add to cart
+              </button>
+            </div>
+          </div>
         </div>
+        ))}
       </div>
     </div>
   );

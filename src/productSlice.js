@@ -8,7 +8,7 @@ export const getProductsAsync = createAsyncThunk(
         );
         if (response.ok) {
             const products = await response.json(); // Pretvaranje odgovora u JSON
-            return products; // `payload` u slucaju uspeha
+            return products.products; // `payload` u slucaju uspeha
         }
     }
 );
