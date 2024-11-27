@@ -14,8 +14,9 @@ const Products = () => {
     dispatch(getProductsAsync()); // Dispecujemo asinhronu akciju za preuzimanje proizvoda
   }, [dispatch]) // Zavisnost osigurava da se efekat pokrece samo jednom (ili ako se dispatch promeni)
 
+  // Funkcija za dodavanje proizvoda u korpu
   const handleAddToCart = x => {
-    dispatch(addtoCart(x))
+    dispatch(addtoCart(x))  // Pokrecemo Redux akciju `addToCart` sa podacima o proizvodu
   };
 
   // Ako je status `loading`, prikazujemo poruku dok se podaci ucitavaju

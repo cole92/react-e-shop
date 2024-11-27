@@ -17,6 +17,7 @@ const productSlice = createSlice({
     name: 'products',
     initialState: {
         list: [], // Prazan niz za listu proizvoda
+        filteredProducts: [],
         status: null, // Pocetno stanje statusa
     },
     reducers: {}, // Mesto za sinhrone akcije
@@ -27,6 +28,7 @@ const productSlice = createSlice({
             })
             .addCase(getProductsAsync.fulfilled, (state, { payload }) => {
                 state.list = payload; // Punimo listu proizvodima
+                state.filteredProducts = payload;
                 state.status = "success"; // API poziv je uspesan
             })
             .addCase(getProductsAsync.rejected, (state) => {

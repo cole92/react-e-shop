@@ -129,10 +129,7 @@ class App extends Component {
             </div>
             <div className="col-md-3">
               {/* Placeholder za korpu */}
-              <Basket
-                cartItems={this.state.cartItems}
-                handleRemoveFromCart={this.handleRemoveFromCart}
-              />
+              <Basket />
             </div>
           </div>
         </div>
