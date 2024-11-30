@@ -7,7 +7,7 @@ import { addtoCart } from "../cartSlice";
 
 const Products = () => {
   const dispatch = useDispatch(); // Hook za pokretanje akcija iz Redux-a
-  const { list, loading } = useSelector(state => state.products); // Pristup globalnom stanju iz `store`
+  const { filteredProducts, loading } = useSelector(state => state.products); // Pristup globalnom stanju iz `store`
 
   // Koristimo useEffect za API poziv prilikom inicijalnog renderovanja
   useEffect(() => {
@@ -25,8 +25,8 @@ const Products = () => {
   return (
     <div>
       <div className="row">
-        {/** Mapiranje niza list **/}
-        {list.map(product => (
+        {/** Mapiranje niza filteredProducts **/}
+        {filteredProducts.map(product => (
           <div
           key={product.id}
           className="col-md-3 my-2 mx-4 p-2 border border-primary border-2 rounded"

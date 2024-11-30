@@ -13,14 +13,35 @@ export const getProductsAsync = createAsyncThunk(
     }
 );
 
+export let sortP = '';
+export let sizeP = '';
+
 const productSlice = createSlice({
     name: 'products',
     initialState: {
         list: [], // Prazan niz za listu proizvoda
-        filteredProducts: [],
+        filteredProducts: [], // Filtrirani proizvodi
         status: null, // Pocetno stanje statusa
     },
-    reducers: {}, // Mesto za sinhrone akcije
+    reducers: {
+        sortBy(state, action) {
+            sortP = action.payload
+            action.payload !== ''
+                ? state.filteredProducts.sort((a, b) => (
+                    sortP === 'lowestprice'
+                        ? (a.price > b.price) ? 1 : -1
+                        : (a.price < b.price) ? 1 : -1
+                ))
+                : state.filteredProducts.sort((a, b) => (a.id > b.id ? 1 : -1));  
+        },
+        sizeBy(state, action) {
+            sizeP = action.payload
+        },
+        filterBy(state, action) {
+            state.list = action.payload
+        }
+
+    }, // Mesto za asinhrone akcije
     extraReducers: (builder) => {
         builder
             .addCase(getProductsAsync.pending, (state) => {
@@ -36,5 +57,5 @@ const productSlice = createSlice({
             });
     },
 });
-
-export default productSlice.reducer
+export const {sortBy, sizeBy, filterBy} = productSlice.actions;
+export default productSlice.reducer;

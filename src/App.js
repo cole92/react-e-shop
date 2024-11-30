@@ -42,10 +42,10 @@ class App extends Component {
       if (stateObj.sort !== "") {
         stateObj.products.sort((a, b) =>
           stateObj.sort === "lowestprice"
-            ? a.price > b.price
+            ? (a.price > b.price)
               ? 1
               : -1
-            : a.price < b.price
+            : (a.price < b.price)
             ? 1
             : -1
         );
@@ -118,11 +118,7 @@ class App extends Component {
           <div className="row">
             <div className="col-md-9">
               {/* Filter komponenta za prikaz sortiranja/filtriranja */}
-              <Filter
-                count={this.state.filterProducts.length}
-                handleSortC={this.handleSortChange}
-                handleSizeC={this.handleSizeChange}
-              />
+              <Filter />
               <hr />
               {/* Products komponenta za prikaz proizvoda */}
               <Products />
