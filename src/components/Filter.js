@@ -10,11 +10,20 @@ const Filter = () => {
     dispatch(sortBy(e.target.value))
     listProducts();
   }
+
   let s = [...list]
+
+  const handleSizeChange = e => {
+    dispatch(sizeBy(e.target.value))
+    listProducts();
+  }
 
   const listProducts = () => {
     if (sortP !== '') {
       dispatch(filterBy(s));
+    }
+    if (sizeP !== '') {
+      dispatch(filterBy(s))
     }
 
     dispatch(filterBy(list))

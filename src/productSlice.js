@@ -36,7 +36,12 @@ const productSlice = createSlice({
         },
         sizeBy(state, action) {
             sizeP = action.payload
-        },
+
+            action.payload.toUppperCase() === ''
+            ? state.filteredProducts = [...state.list]
+            : state.filteredProducts = [...state.list].filter((x) => 
+                x.availableSizes.indexOf(action.payload.toUppperCase()) !== -1)
+        },   
         filterBy(state, action) {
             state.list = action.payload
         }
