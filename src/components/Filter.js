@@ -3,29 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { sizeBy, sortBy, filterBy, sizeP, sortP } from "../productSlice";
 
 const Filter = () => {
+  // Hook za pokretanje akcija iz Redux-a
   const dispatch = useDispatch();
+  // Pristup globalnom stanju `products` iz Redux store-a i destrukturiranje `list` i `filteredProducts`
   const { list, filteredProducts } = useSelector(state => state.products);
 
+  // Funkcija za promenu sortiranja (triggeruje sortBy akciju iz Redux-a)
   const handleSortChange = e => {
     dispatch(sortBy(e.target.value))
     listProducts();
   }
-
+  // Pravljenje kopije originalne liste proizvoda (state.list) radi manipulacije bez menjanja originala
   let s = [...list]
-
+  // Funkcija za promenu velicine (triggeruje sizeBy akciju iz Redux-a)
   const handleSizeChange = e => {
     dispatch(sizeBy(e.target.value))
     listProducts();
   }
-
+  // Funkcija za azuriranje liste proizvoda na osnovu trenutnih filtera i sortiranja
   const listProducts = () => {
     if (sortP !== '') {
+      // Ako postoji aktivno sortiranje, azuriramo filtriranu listu sa kopijom originalnog niza
       dispatch(filterBy(s));
     }
     if (sizeP !== '') {
+      // Ako postoji aktivni filter velicine, azuriramo filtriranu listu sa kopijom originalnog niza
       dispatch(filterBy(s))
     }
-
+    // Ako nema aktivnog sortiranja ili filtriranja, vracamo originalnu listu proizvoda
     dispatch(filterBy(list))
   }
 
@@ -42,7 +47,7 @@ const Filter = () => {
               <select
                 className="form-control"
                 value={sortP}
-                onChange={ e => handleSortChange(e)} // Event handler za promenu sortiranja
+                onChange={e => handleSortChange(e)} // Event handler za promenu sortiranja
               >
                 <option value="">Select</option>
                 <option value="lowestprice">Lowest to highest</option>
@@ -57,7 +62,7 @@ const Filter = () => {
               <select
                 className="form-control"
                 value={sizeP}
-                onChange={ e => handleSizeChange(e)} //Event handler za promenu filtriranja
+                onChange={e => handleSizeChange(e)} //Event handler za promenu filtriranja
               >
                 <option value="">ALL</option>
                 <option value="xs">XS</option>
