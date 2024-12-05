@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import util from "../util";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../cartSlice";
 
@@ -7,8 +6,8 @@ import { removeFromCart } from "../cartSlice";
 const Cart = () => {
   // Hook za pokretanje Redux akcija
   const dispatch = useDispatch();
-  // Pristup globalnom stanju korpe iz Redux `store`
-  const cart = useSelector(state => state.cart)
+  // Pristup globalnom stanju korpe iz Redux `store` sa fallback-om
+  const cart = useSelector(state => state.cart) || { cartItems: [] };
   // Funkcija za uklanjanje proizvoda iz korpe
   // Prima proizvod (`product`) i boolean vrednost (`isRemoveAll`) koja odredjuje nacin uklanjanja
   const handleRemoveFromCart = (product, isRemoveAll) => {
@@ -56,12 +55,12 @@ const Cart = () => {
         </div>
       ))}
 
-      {/* Prikaz ukupne cene svih proizvoda u korpi */}
+      {/* Izracunavanje ukupne cene svih proizvoda u korpi */}
       <div>
         <strong>
           Todal: $
           {cart.cartItems
-            .reduce((acc, item) => acc + item.price * item.cartQuantity, 0) // Sabiranje cena svih proizvoda
+            .reduce((acc, item) => acc + item.price * item.cartQuantity, 0) // Sabiramo (cena * količina) za svaki proizvod
             .toFixed(2)}
         </strong>
       </div>

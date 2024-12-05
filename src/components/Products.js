@@ -3,6 +3,7 @@ import util from "../util";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAsync } from "../productSlice";
 import { addtoCart } from "../cartSlice";
+import Filter from "./Filter";
 
 
 const Products = () => {
@@ -24,6 +25,7 @@ const Products = () => {
 
   return (
     <div>
+      <Filter/>
       <div className="row">
         {/** Mapiranje niza filteredProducts **/}
         {filteredProducts.map(product => (
