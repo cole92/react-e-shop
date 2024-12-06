@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../cartSlice";
+import { removeFromCart, addtoCart } from "../cartSlice";
 import { Link } from "react-router-dom";
 
 
@@ -15,12 +15,15 @@ const Cart = () => {
     // Dispecuje akciju `removeFromCart` sa odgovarajucim podacima
     dispatch(removeFromCart({ product, isRemoveAll }));
   };
+  // Metoda koriscena za pojedinacno dodavanje vec postojeceg itema u korpi
+  const handleAddToCart = (product) => {
+    dispatch(addtoCart(product));
+  };
 
   return (
     <div className="container my-4 p-3 border border-primary rounded bg-light shadow">
       {/* Naslov korpe */}
       <h4 className="text-center text-primary mb-4">Shopping Cart</h4>
-  
       {/* Prikaz poruke ako je korpa prazna */}
       {cart.cartItems.length === 0 ? (
         <div className="alert alert-warning text-center">
@@ -34,7 +37,6 @@ const Cart = () => {
           </h5>
         </div>
       )}
-  
       {/* Mapiranje kroz proizvode u korpi */}
       {cart.cartItems.map((item) => (
         <div key={item.id} className="card mb-3 shadow-sm">
@@ -51,14 +53,22 @@ const Cart = () => {
               <div className="card-body">
                 {/* Naslov proizvoda */}
                 <h5 className="card-title">{item.title}</h5>
-                {/* Kolicina proizvoda */}
                 <p className="card-text">
-                  <strong>Quantity:</strong> {item.cartQuantity}
+                  {/* Dugme za umanjivanje proizvoda */}
                   <button
-                    className="btn btn-sm btn-outline-danger ms-2"
+                    className="btn btn-sm btn-outline-danger me-2"
                     onClick={() => handleRemoveFromCart(item, false)}
                   >
                     -
+                  </button>
+                  {/* Kolicina proizvoda */}
+                  <strong>Quantity:</strong> {item.cartQuantity}
+                  {/* Dugme za dodavanje proizvoda */}
+                  <button
+                    className="btn btn-sm btn-outline-danger ms-2"
+                    onClick={() => handleAddToCart(item)}
+                  >
+                    +
                   </button>
                 </p>
                 {/* Cena proizvoda */}
@@ -77,7 +87,6 @@ const Cart = () => {
           </div>
         </div>
       ))}
-  
       {/* Ukupna cena proizvoda */}
       {cart.cartItems.length > 0 && (
         <div className="border-top pt-3 mt-3 text-end">
@@ -95,7 +104,7 @@ const Cart = () => {
             Checkout
           </button>
           <Link to='/' className="text-muted mt-2 d-block">
-              Continue Shopping
+            Continue Shopping
           </Link>
         </div>
       )}
