@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../cartSlice";
+import { Link } from "react-router-dom";
 
 
 const Cart = () => {
@@ -88,11 +89,14 @@ const Cart = () => {
           </h5>
           {/* Dugme za Checkout akciju */}
           <button
-            className="btn btn-success mt-2"
+            className="btn btn-success mt-2 "
             onClick={() => console.log("Checkout clicked!")}
           >
             Checkout
           </button>
+          <Link to='/' className="text-muted mt-2 d-block">
+              Continue Shopping
+          </Link>
         </div>
       )}
     </div>
