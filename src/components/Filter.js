@@ -6,7 +6,7 @@ const Filter = () => {
   // Hook za pokretanje akcija iz Redux-a
   const dispatch = useDispatch();
   // Pristup globalnom stanju `products` iz Redux store-a i destrukturiranje `list` i `filteredProducts`
-const { list } = useSelector(state => state.products);
+const { list, filteredProducts } = useSelector(state => state.products);
 
   // Funkcija za promenu sortiranja (triggeruje sortBy akciju iz Redux-a)
   const handleSortChange = e => {
@@ -32,6 +32,7 @@ const { list } = useSelector(state => state.products);
     }
     // Ako nema aktivnog sortiranja ili filtriranja, vracamo originalnu listu proizvoda
     dispatch(filterBy(list))
+    
   }
 
   return (
@@ -39,7 +40,11 @@ const { list } = useSelector(state => state.products);
       <div className="col-md-9">
         <div className="row">
           {/* Prikaz broja pronadjenih proizvoda */}
-          <div className="col-md-4">products found</div>
+          <div className="col-md-4">
+            {filteredProducts.length > 0
+              ? `${filteredProducts.length} product(s) found`
+              : "No products found"}
+          </div>
           <div className="col-md-4">
           <label htmlFor="sortOrder">
               {/* Padajuci meni za sortiranje proizvoda */}
@@ -62,8 +67,8 @@ const { list } = useSelector(state => state.products);
               {/* Padajuci meni za filtriranje proizvoda po velicini */}
               Filter Size
               <select
-              id="filterSize" // Dodato
-              name="filterSize" // Dodato
+              id="filterSize"
+              name="filterSize"
                 className="form-control"
                 value={sizeP}
                 onChange={e => handleSizeChange(e)} //Event handler za promenu filtriranja
