@@ -52,9 +52,16 @@ const cartSlice = createSlice({
             // Azuriramo localStorage nakon svake izmene korpe
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
         },
+        // Reducer za uklanjanje svih proivoda iz korpe
+        clearCart: (state) => {
+            // Postavljamo `cartItems` na prazan niz
+            state.cartItems = [];
+            // Azuriramo localStorage nakon svake izmene korpe
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+        }
     },
 });
 
 // Ekspozicija akcija i reducera za upotrebu u ostatku aplikacije
-export const { addtoCart, removeFromCart } = cartSlice.actions; // Ekspozicija akcija
+export const { addtoCart, removeFromCart, clearCart } = cartSlice.actions; // Ekspozicija akcija
 export default cartSlice.reducer; // Export reducer-a za povezivanje sa `store`
