@@ -65,7 +65,9 @@ public/
 - Cart items are stored in LocalStorage, so they remain after refresh (same browser/device).
 
 ## Screenshots
-_Add 2–3 screenshots here (Home, Basket, Filter/Sort) once available._
+![Home / Products](assets/eshop-01-home.png)
+![Filter + Sort](assets/eshop-02-filter-sort.png)
+![Basket](assets/eshop-03-basket.png)
 
 ## License
 See `LICENSE`.
