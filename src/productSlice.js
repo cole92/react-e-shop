@@ -4,7 +4,7 @@ export const getProductsAsync = createAsyncThunk(
     "products/getProductsAsync", // Tip akcije (identifikator za pracenje akcije)
     async () => {
         const response = await fetch(
-            "https://mocki.io/v1/0a8a74dd-c57e-4fa3-8eb0-f20a352e9ce1"  // API URL
+            `${process.env.PUBLIC_URL}/data/products.json`  // API URL
         );
         if (response.ok) {
             const products = await response.json(); // Parsiramo odgovor iz API-ja u JSON format

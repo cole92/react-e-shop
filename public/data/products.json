@@ -1,0 +1,67 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "sku": "10547961582846888",
+      "title": "Basic Tee",
+      "price": 29.99,
+      "availableSizes": ["S", "M"]
+    },
+    {
+      "id": 2,
+      "sku": "11600983276356164",
+      "title": "Street Hoodie",
+      "price": 59.99,
+      "availableSizes": ["M", "L"]
+    },
+    {
+      "id": 3,
+      "sku": "11854078013954528",
+      "title": "Minimal Jacket",
+      "price": 89.99,
+      "availableSizes": ["S", "L"]
+    },
+    {
+      "id": 4,
+      "sku": "18532669286405344",
+      "title": "Oversized Sweatshirt",
+      "price": 49.99,
+      "availableSizes": ["XL"]
+    },
+    {
+      "id": 5,
+      "sku": "18644119330491310",
+      "title": "Everyday Shorts",
+      "price": 34.99,
+      "availableSizes": ["M"]
+    },
+    {
+      "id": 6,
+      "sku": "5619496040738316",
+      "title": "Summer Polo",
+      "price": 39.99,
+      "availableSizes": ["S", "XL"]
+    },
+    {
+      "id": 7,
+      "sku": "6090484789343891",
+      "title": "Classic Jeans",
+      "price": 69.99,
+      "availableSizes": ["L"]
+    },
+    {
+      "id": 8,
+      "sku": "876661122392077",
+      "title": "Essential Sneakers",
+      "price": 79.99,
+      "availableSizes": ["S", "M", "L"]
+    },
+    {
+      "id": 9,
+      "sku": "9197907543445676",
+      "title": "Lightweight Cap",
+      "price": 19.99,
+      "availableSizes": ["M", "XL"]
+    }
+  ]
+}
